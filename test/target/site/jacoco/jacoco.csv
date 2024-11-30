@@ -1,0 +1,6 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+test,com.balaji.test.controller,JobController,0,73,0,4,0,17,0,8,0,6
+test,com.balaji.test.serviceImpl,JobServiceImpl,0,94,0,0,0,19,0,9,0,9
+test,com.balaji.test,TestApplication,5,3,0,0,2,1,1,1,1,1
+test,com.balaji.test.exception,GlobalExceptionHandler,0,61,0,0,0,13,0,5,0,5
+test,com.balaji.test.exception,NotFoundException,0,4,0,0,0,2,0,1,0,1

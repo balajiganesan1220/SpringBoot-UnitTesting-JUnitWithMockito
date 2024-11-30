@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JobController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">test</a> &gt; <a href="index.source.html" class="el_package">com.balaji.test.controller</a> &gt; <span class="el_source">JobController.java</span></div><h1>JobController.java</h1><pre class="source lang-java linenums">package com.balaji.test.controller;
+
+import com.balaji.test.entity.Job;
+import com.balaji.test.exception.NotFoundException;
+import com.balaji.test.service.JobService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
+
+@RestController
+@RequestMapping(&quot;/jobs&quot;)
+public class JobController {
+    private final JobService jobService;
+<span class="fc" id="L16">    JobController(JobService jobService){</span>
+<span class="fc" id="L17">        this.jobService=jobService;</span>
+<span class="fc" id="L18">    }</span>
+    @GetMapping
+    public ResponseEntity&lt;List&lt;Job&gt;&gt; findAll(){
+<span class="fc" id="L21">        List&lt;Job&gt; jobs=jobService.findAll();</span>
+<span class="fc bfc" id="L22" title="All 2 branches covered.">        return jobs.isEmpty()</span>
+<span class="fc" id="L23">        ? new ResponseEntity&lt;&gt;(jobs, HttpStatus.NO_CONTENT)</span>
+<span class="fc" id="L24">                :new ResponseEntity&lt;&gt;(jobs,HttpStatus.OK);</span>
+    }
+
+    @GetMapping(&quot;/{id}&quot;)
+    public ResponseEntity&lt;Job&gt; jobById(@PathVariable Long id) {
+<span class="fc" id="L29">        Job job = jobService.jobById(id);</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">        if (job == null) {</span>
+<span class="fc" id="L31">            throw new NotFoundException(&quot;Job Not Found with Id :&quot; + id);</span>
+        }
+<span class="fc" id="L33">        return ResponseEntity.ok(job);</span>
+    }
+
+    @PostMapping
+    public ResponseEntity&lt;String&gt; createJob(@RequestBody @Validated Job job){
+<span class="fc" id="L38">        jobService.createJob(job);</span>
+<span class="fc" id="L39">        return new ResponseEntity&lt;&gt;(&quot;Job Successfully Created.&quot;,HttpStatus.OK);</span>
+    }
+
+    @PutMapping
+    public ResponseEntity&lt;?&gt; updateJob(@RequestBody @Validated Job job){
+<span class="fc" id="L44">        Job updatedJob=jobService.updateJob(job);</span>
+<span class="fc" id="L45">        return new ResponseEntity&lt;&gt;(job,HttpStatus.OK);</span>
+    }
+
+    @DeleteMapping(&quot;/{id}&quot;)
+    public ResponseEntity&lt;String&gt; deleteJobById(@PathVariable Long id){
+<span class="fc" id="L50">        jobService.deleteJob(id);</span>
+<span class="fc" id="L51">        return new ResponseEntity&lt;&gt;(&quot;Job with ID &quot;+id+&quot; has been deleted.&quot;,HttpStatus.OK);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.balaji.test.repository.JobRepositoryTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 24.04 s -- in com.balaji.test.repository.JobRepositoryTest
